@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر الاشتراكات</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <h1>🏪 متجر الاشتراكات</h1>
+        <div class="user-section">
+            <span id="username">ضيف</span>
+            <button id="logoutBtn" onclick="logout()" style="display:none;">تسجيل خروج</button>
+        </div>
+    </div>
+
+    <!-- صفحة تسجيل الدخول -->
+    <div id="loginPage" class="page active">
+        <div class="login-box">
+            <h2>تسجيل الدخول</h2>
+            <input type="text" id="loginUsername" placeholder="اسم المستخدم" class="input-field">
+            <input type="password" id="loginPassword" placeholder="كلمة المرور" class="input-field">
+            <button onclick="login()" class="btn-primary">دخول</button>
+            <p>ليس لديك حساب؟ <a href="#" onclick="goToSignup()">إنشاء حساب</a></p>
+        </div>
+    </div>
+
+    <!-- صفحة إنشاء حساب -->
+    <div id="signupPage" class="page">
+        <div class="login-box">
+            <h2>إنشاء حساب جديد</h2>
+            <input type="text" id="signupUsername" placeholder="اسم المستخدم" class="input-field">
+            <input type="email" id="signupEmail" placeholder="البريد الإلكتروني" class="input-field">
+            <input type="password" id="signupPassword" placeholder="كلمة المرور" class="input-field">
+            <input type="password" id="signupConfirmPassword" placeholder="تأكيد كلمة المرور" class="input-field">
+            <button onclick="signup()" class="btn-primary">إنشاء</button>
+            <p>لديك حساب؟ <a href="#" onclick="goToLogin()">دخول</a></p>
+        </div>
+    </div>
+
+    <!-- صفحة المتجر -->
+    <div id="storePage" class="page">
+        <div class="container">
+            <div class="filters">
+                <button onclick="filterSubscriptions('all')" class="filter-btn active">الكل</button>
+                <button onclick="filterSubscriptions('active')" class="filter-btn">النشطة</button>
+                <button onclick="filterSubscriptions('purchased')" class="filter-btn">المشتراة</button>
+            </div>
+            <div class="subscriptions-grid" id="subscriptionsGrid"></div>
+            <div id="cart" class="cart-section">
+                <h3>🛒 سلة التسوق</h3>
+                <div id="cartItems" class="cart-items"></div>
+                <div class="cart-total">
+                    <strong>الإجمالي: <span id="totalPrice">0</span> ريال</strong>
+                </div>
+                <button onclick="checkout()" class="btn-checkout">دفع</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة الدفع -->
+    <div id="checkoutPage" class="page">
+        <div class="checkout-box">
+            <h2>معلومات الدفع</h2>
+            <input type="text" id="cardName" placeholder="اسم حامل البطاقة" class="input-field">
+            <input type="text" id="cardNumber" placeholder="رقم البطاقة" maxlength="16" class="input-field">
+            <div class="row">
+                <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5" class="input-field">
+                <input type="text" id="cardCVV" placeholder="CVV" maxlength="3" class="input-field">
+            </div>
+            <div class="checkout-total">
+                <h3>الإجمالي: <span id="checkoutTotal">0</span> ريال</h3>
+            </div>
+            <button onclick="processPayment()" class="btn-primary">تأكيد الدفع</button>
+            <button onclick="backToStore()" class="btn-cancel">إلغاء</button>
+        </div>
+    </div>
+
+    <!-- صفحة الاشتراكاتي -->
+    <div id="mySubscriptionsPage" class="page">
+        <div class="container">
+            <h2>اشتراكاتي 📦</h2>
+            <div id="mySubscriptions" class="subscriptions-grid"></div>
+            <button onclick="backToStore()" class="btn-primary" style="margin-top: 20px;">العودة للمتجر</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
